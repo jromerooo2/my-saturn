@@ -1,0 +1,46 @@
+{
+    "Subjects":{
+        "US History":{
+            "period": 1,
+            "teacher": "Mr. Smith",
+            "reminders": [],
+            "time": "7:30-8:24"
+        },
+        "Math":{
+            "period": 2,
+            "teacher": "Mr. Jones",
+            "reminders": [],
+            "time": "8:30-9:24"
+        },
+        "English":{
+            "period": 3,
+            "teacher": "Mrs. Johnson",
+            "reminders": [],
+            "time": "9:30-10:24"
+        },
+        "Science":{
+            "period": 4,
+            "teacher": "Mr. Brown",
+            "reminders": [],
+            "time": "10:30-11:24"
+        },
+        "Lunch":{
+            "period": 5,
+            "teacher": "Mr. Smith",
+            "reminders": [],
+            "time": "11:30-12:24"
+        },
+        "Spanish":{
+            "period": 6,
+            "teacher": "Mr. Jones",
+            "reminders": [],
+            "time": "12:30-1:24"
+        },
+        "PE":{
+            "period": 7,
+            "teacher": "Mrs. Johnson",
+            "reminders": [],
+            "time": "1:30-2:24"
+        }
+    }
+}
