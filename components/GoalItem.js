@@ -5,12 +5,12 @@ function GoalItem(props) {
     <View style={styles.goalItem}>
       <Pressable
         android_ripple={{ color: '#210644' }}
-        onPress={props.onDeleteItem.bind(this, props.id)}
+        onPress={props.onClickItem.bind(this, props.period)}
         style={({ pressed }) => pressed && styles.pressedItem}
       >
         <Text style={styles.goalText}>Teacher: {props.teacher}</Text>
         <Text style={styles.goalText}>Time: {props.time}</Text>
-        <Text style={styles.goalText}>Period: {props.period}</Text>
+        <Text style={styles.goalText}>Period   : {props.period}</Text>
       </Pressable>
     </View>
   );

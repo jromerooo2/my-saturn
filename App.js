@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { StyleSheet, View, FlatList, Button } from 'react-native';
+import { StyleSheet, View, FlatList, Button, Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import SubjectItem from './components/SubjectItem';
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
+import SpecificSubject from './views/SpecificSubject';
 
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
-  const [courseGoals, setCourseGoals] = useState([]);
+  const [idPeriod, setIdPeriod] = useState(1);
+
   const subjects_complete = [
 {
       "period": 1,
@@ -54,7 +55,9 @@ export default function App() {
   }
   ]
   // console.log(subjects_complete.Math.teacher);
-  function startAddGoalHandler() {
+  function startAddGoalHandler(id) {
+    // console.log(id);
+    setIdPeriod(id);
     setModalIsVisible(true);
   }
 
@@ -80,26 +83,23 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <View style={styles.appContainer}>
-        {/* <Button
-          title="Classes"
-          color="#a065ec"
-          onPress={startAddGoalHandler}
-        />
+        <Text style={styles.title}>My Schedule</Text>
         <GoalInput
           visible={modalIsVisible}
-          onAddGoal={addGoalHandler}
           onCancel={endAddGoalHandler}
-        /> */}
+          idPeriod={idPeriod}
+        />
         <View style={styles.goalsContainer}>
           <FlatList
             data={subjects_complete}
             renderItem={(itemData) => {
               return (
                 <GoalItem
-                  teacher={itemData.item.teacher}
+                  teacher={itemData.item.teacher}                  
                   time={itemData.item.time}
                   period={itemData.item.period}
-                  onDeleteItem={deleteGoalHandler}
+                  pressed={startAddGoalHandler}
+                  onClickItem={startAddGoalHandler}                  
                 />
               );
             }}
@@ -135,6 +135,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    color: 'white',
+    textAlign: 'center',
   },
   goalsContainer: {
     flex: 5,

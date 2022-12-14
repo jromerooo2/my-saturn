@@ -1,25 +1,78 @@
 import { useState } from 'react';
 import {
   View,
-  TextInput,
+  Text,
   Button,
   StyleSheet,
+  TextInput,
   Modal,
-  Image,
+  Image
 } from 'react-native';
 
 function GoalInput(props) {
-  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [text, setText] = useState('');
+  const [notes, setNotes] = useState([]);
 
   function goalInputHandler(enteredText) {
     setEnteredGoalText(enteredText);
   }
 
   function addGoalHandler() {
-    props.onAddGoal(enteredGoalText);
-    setEnteredGoalText('');
+    setNotes([...notes, text]);
+    console.log(notes);
   }
+  function handleCancel() {
+    setText('')
+    setNotes([]);
+    props.onCancel();
+  }
+  const subjects_complete = [
+    {
+          "period": 1,
+          "teacher": "Mr. Smith",
+          "reminders": [],
+          "time": "7:30-8:24"
+      },
+    {
+          "period": 2,
+          "teacher": "Mr. Jones",
+          "reminders": [],
+          "time": "8:30-9:24"
+      },
+    {
+    
+          "period": 3,
+          "teacher": "Mrs. Johnson",
+          "reminders": [],
+          "time": "9:30-10:24"
+      },
+    {
+          "period": 4,
+          "teacher": "Mr. Brown",
+          "reminders": [],
+          "time": "10:30-11:24"
+      },
+    {
+          "period": 5,
+          "teacher": "Mr. Smith",
+          "reminders": [],
+          "time": "11:30-12:24"
+      },
+      {
+          "period": 6,
+          "teacher": "Mr. Jones",
+          "reminders": [],
+          "time": "12:30-1:24"
+      },
+      {
+          "period": 7,
+          "teacher": "Mrs. Johnson",
+          "reminders": [],
+          "time": "1:30-2:24"
+      }
+  ]
 
+    
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
@@ -27,15 +80,20 @@ function GoalInput(props) {
           style={styles.image}
           source={require('../assets/images/goal.png')}
         />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Your course goal!"
-          onChangeText={goalInputHandler}
-          value={enteredGoalText}
-        />
+        <Text style={styles.text}>
+          This is : {props.idPeriod}
+        </Text>
+        <View style={styles.buttonContainer}>
+          <TextInput
+            style={{height: 40}}
+            placeholder="Any notes?"
+            onChangeText={newText => setText(newText)}
+            defaultValue={text}
+          />
+        </View>
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={props.onCancel} color="#f31282" />
+            <Button title="Cancel" onPress={handleCancel} color="#f31282" />
           </View>
           <View style={styles.button}>
             <Button title="Add Goal" onPress={addGoalHandler} color="#b180f0" />
@@ -49,6 +107,9 @@ function GoalInput(props) {
 export default GoalInput;
 
 const styles = StyleSheet.create({
+  text:{
+    color: 'white',
+  },
   inputContainer: {
     flex: 1,
     justifyContent: 'center',
